@@ -29,12 +29,12 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.button1 = new System.Windows.Forms.Button();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -157,7 +157,7 @@
 			// timer1
 			// 
 			this.timer1.Enabled = true;
-			this.timer1.Interval = 1000;
+			this.timer1.Interval = 2000;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
 			// panel2
@@ -174,19 +174,19 @@
 			// 
 			// chart1
 			// 
-			chartArea7.Name = "ChartArea1";
-			this.chart1.ChartAreas.Add(chartArea7);
+			chartArea1.Name = "ChartArea1";
+			this.chart1.ChartAreas.Add(chartArea1);
 			this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-			legend7.Name = "Legend1";
-			this.chart1.Legends.Add(legend7);
+			legend1.Name = "Legend1";
+			this.chart1.Legends.Add(legend1);
 			this.chart1.Location = new System.Drawing.Point(0, 0);
 			this.chart1.Name = "chart1";
-			series7.ChartArea = "ChartArea1";
-			series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-			series7.Legend = "Legend1";
-			series7.Name = "温度";
-			series7.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
-			this.chart1.Series.Add(series7);
+			series1.ChartArea = "ChartArea1";
+			series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+			series1.Legend = "Legend1";
+			series1.Name = "温度";
+			series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+			this.chart1.Series.Add(series1);
 			this.chart1.Size = new System.Drawing.Size(556, 264);
 			this.chart1.TabIndex = 0;
 			this.chart1.Text = "chart1";
@@ -204,19 +204,19 @@
 			// 
 			// chart2
 			// 
-			chartArea8.Name = "ChartArea1";
-			this.chart2.ChartAreas.Add(chartArea8);
+			chartArea2.Name = "ChartArea1";
+			this.chart2.ChartAreas.Add(chartArea2);
 			this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
-			legend8.Name = "Legend1";
-			this.chart2.Legends.Add(legend8);
+			legend2.Name = "Legend1";
+			this.chart2.Legends.Add(legend2);
 			this.chart2.Location = new System.Drawing.Point(0, 0);
 			this.chart2.Name = "chart2";
-			series8.ChartArea = "ChartArea1";
-			series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-			series8.Legend = "Legend1";
-			series8.Name = "湿度";
-			series8.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
-			this.chart2.Series.Add(series8);
+			series2.ChartArea = "ChartArea1";
+			series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+			series2.Legend = "Legend1";
+			series2.Name = "湿度";
+			series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+			this.chart2.Series.Add(series2);
 			this.chart2.Size = new System.Drawing.Size(556, 264);
 			this.chart2.TabIndex = 0;
 			this.chart2.Text = "chart2";
@@ -254,13 +254,12 @@
 			// 
 			// serialPort1
 			// 
-			this.serialPort1.BaudRate = 115200;
 			this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort1_DataReceived);
 			// 
 			// timer2
 			// 
 			this.timer2.Enabled = true;
-			this.timer2.Interval = 1000;
+			this.timer2.Interval = 2000;
 			this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
 			// 
 			// Form1
@@ -273,7 +272,7 @@
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.panel4);
 			this.Name = "Form1";
-			this.Text = "Form1";
+			this.Text = "TR detection v1.0 --- 1605 05号 温锐豪";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

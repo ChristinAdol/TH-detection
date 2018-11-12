@@ -18,7 +18,7 @@ namespace TH_detection
 
 		public class MonitoringData     //定义一个检测数据结构体
 		{
-			public static int T = 0, R = 0;     //T-温度 R-湿度
+			public static int T = 0, H = 0;     //T-温度 H-湿度
 		}
 
 		Random rnd = new Random();      //随机数（测试用）---> rnd.Next(500)
@@ -26,6 +26,7 @@ namespace TH_detection
 		public Form1()
 		{
 			InitializeComponent();
+			serialPort1.BaudRate = 9600;
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
@@ -53,13 +54,15 @@ namespace TH_detection
 					button1.Text = "开始检测";
 					comboBox1.Enabled = true;
 					timer1.Stop();
+					label3.Text = "无";
+					label4.Text = "无";
 				}
 				else
 				{
 					//串口已经处于关闭状态，则设置好串口属性后打开
 					comboBox1.Enabled = false;
 					serialPort1.PortName = comboBox1.Text;
-					serialPort1.BaudRate = 115200;
+					serialPort1.BaudRate = 9600;
 					serialPort1.DataBits = 8;
 					serialPort1.Parity   = System.IO.Ports.Parity.None;
 					serialPort1.StopBits = System.IO.Ports.StopBits.One;
@@ -81,6 +84,7 @@ namespace TH_detection
 				button1.Text = "开始检测";
 				MessageBox.Show(ex.Message);
 				comboBox1.Enabled = true;
+
 			}
 		}
 
@@ -101,8 +105,12 @@ namespace TH_detection
 			sb.Clear();     //防止出错,首先清空字符串构造器
 			sb.Append(Encoding.ASCII.GetString(received_buf));
 
-			MonitoringData.T = (sb[0] - 48) * 10 + (sb[1] - 48);
-			MonitoringData.R = (sb[2] - 48) * 10 + (sb[3] - 48);
+			if (num != 0)
+			{
+				MonitoringData.T = sb[0];
+				MonitoringData.H = sb[1];
+			}
+
 
 			try
 			{
@@ -110,7 +118,7 @@ namespace TH_detection
 				Invoke((EventHandler)(delegate
 				{
 					label3.Text = (MonitoringData.T.ToString() + " ℃");
-					label4.Text = (MonitoringData.R.ToString() + " %RH");
+					label4.Text = (MonitoringData.H.ToString() + " %");
 				}
 				  )
 				);
@@ -135,19 +143,18 @@ namespace TH_detection
 			//将新数据点添加到其系列中
 			ptSeries.Points.AddXY(timeStamp.ToOADate(), value);
 
-			//删除超过当前时间4min前的点。
-			double removePoint = timeStamp.AddMinutes((double)(4) * (-1)).ToOADate();      //设定当前时间4min前的点
+			double removePoint = timeStamp.AddMinutes((double)(9) * (-1)).ToOADate();      //设定当前时间9min前的点
 
 			while (ptSeries.Points[0].XValue < removePoint)
 			{
-				ptSeries.Points.RemoveAt(0);    //将点移除
+				ptSeries.Points.RemoveAt(0);    //删除超过当前时间9min前的点。
 			}
 			//设置 chart1 x轴时间值
 			chart1.ChartAreas[0].AxisX.Minimum = ptSeries.Points[0].XValue;     
-			chart1.ChartAreas[0].AxisX.Maximum = DateTime.FromOADate(ptSeries.Points[0].XValue).AddMinutes(5).ToOADate();    
-			//设置 chart1 x轴时间值
+			chart1.ChartAreas[0].AxisX.Maximum = DateTime.FromOADate(ptSeries.Points[0].XValue).AddMinutes(10).ToOADate();    
+			//设置 chart2 x轴时间值
 			chart2.ChartAreas[0].AxisX.Minimum = ptSeries.Points[0].XValue;     
-			chart2.ChartAreas[0].AxisX.Maximum = DateTime.FromOADate(ptSeries.Points[0].XValue).AddMinutes(5).ToOADate();    
+			chart2.ChartAreas[0].AxisX.Maximum = DateTime.FromOADate(ptSeries.Points[0].XValue).AddMinutes(10).ToOADate();    
 
 			//chart1.Invalidate();
 			//chart2.Invalidate();
@@ -164,7 +171,7 @@ namespace TH_detection
 		{
 			DateTime timeStamp = DateTime.Now;      //获取当前时间到timeStamp
 			AddNewPoint(timeStamp, chart1.Series[0], MonitoringData.T);
-			AddNewPoint(timeStamp, chart2.Series[0], MonitoringData.R);
+			AddNewPoint(timeStamp, chart2.Series[0], MonitoringData.H);
 		}
 
 		/*******************************************************************************

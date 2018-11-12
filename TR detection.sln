@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TH detection", "TH detection\TH detection.csproj", "{17810CC2-A4E5-48C7-942D-CB3A777498B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TR detection", "TH detection\TR detection.csproj", "{17810CC2-A4E5-48C7-942D-CB3A777498B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
